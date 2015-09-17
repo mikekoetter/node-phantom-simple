@@ -223,6 +223,9 @@ exports.create = function (options, callback) {
           cmd = 'sockstat | grep %d';
           break;
 
+        case 'sunos':
+          cmd = 'pfiles %d | grep port | sed -e s/\'  port: \'/:/g';
+          break;
         default:
           phantom.kill();
           callback(new HeadlessError('Your OS is not supported yet. Tell us how to get the listening port based on PID'));
